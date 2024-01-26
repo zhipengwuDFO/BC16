@@ -8,7 +8,7 @@ export async function POST(request) {
   const folderPath = process.cwd() + "/src/app/mylog/";
 
 
-  try {
+  try { 
     const logFilePath = `${folderName}.log`;
     try {
       await fs.access(`${folderPath}/${logFilePath}`, fs.constants.F_OK); // Check if file exists
