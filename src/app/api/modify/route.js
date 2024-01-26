@@ -67,8 +67,8 @@ export async function POST(request) {
           item.isModified = true;
           item.error = true;
           item.errorInfo.push({
-            errorField: errorField,
-            errorDescription: errorDescription,
+            errorField: "Other",
+            errorDescription: "Modified json file, pending verification",
           });
           fileExists = true;
         }
