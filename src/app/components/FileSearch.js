@@ -9,6 +9,9 @@ function FileSearch(props) {
     year: "",
     format: "",
   });
+
+  const folderName = props.folderName.sort();
+
   const areas = props.areas;
   areas.sort((a, b) => {
     const numA = parseInt(a.split("_")[1]);
@@ -116,11 +119,22 @@ function FileSearch(props) {
           <option defaultValue value="">
             All
           </option>
-          <option value="Format_4C">4C</option>
+          {/* <option value="Format_4C">4C</option>
           <option value="Format_4H">4H</option>
           <option value="Format_5A">5A</option>
           <option value="Format_6E">6E</option>
-          <option value="Format_7E">7E</option>
+          <option value="Format_7E">7E</option> */}
+
+          {folderName.map((folderName, index) => {
+            return (
+              <option
+                key={index}
+                value={`Format_${folderName.substring(0, 2).toUpperCase()}`}
+              >
+                {folderName.substring(0, 2).toUpperCase()}
+              </option>
+            );
+          })}
         </select>
       </div>
       <div className={styles.buttonBox}>

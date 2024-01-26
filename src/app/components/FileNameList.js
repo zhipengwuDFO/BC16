@@ -24,7 +24,7 @@ const FileNameList = ({ filesByFolder }) => {
     year: "",
     format: "",
   });
-
+console.log(searchParams)
   // Extract unique folder names
   const uniqueFolderNames = [
     ...new Set(filesByFolder.map((item) => item.folderName)),
@@ -132,12 +132,14 @@ const FileNameList = ({ filesByFolder }) => {
         file.fileName.includes("_" + year + "_")
       );
     }
+
     if (format !== "") {
       filteredFiles = filteredFiles.filter((file) =>
         file.fileName.includes(format)
       );
     }
 
+    
     setFileSearch(filteredFiles);
     setPageNumber(1);
   };
@@ -168,6 +170,7 @@ const FileNameList = ({ filesByFolder }) => {
     }
     if (format !== "") {
       filteredFiles = filteredFiles.filter((file) =>
+
         file.fileName.includes(format)
       );
     }
@@ -193,7 +196,7 @@ const FileNameList = ({ filesByFolder }) => {
   };
   return (
     <div className={styles.container}>
-      <FileSearch areas={areas} onSearch={onSearchHandler} />
+      <FileSearch areas={areas} folderName={uniqueFolderNames} onSearch={onSearchHandler} />
 
       <div className={styles.listWrapper}>
         <div className={styles.reloadBtnWrapper}>

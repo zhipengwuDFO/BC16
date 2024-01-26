@@ -42,41 +42,24 @@ function StreamID({ items, folderName }) {
         <tbody>
           <tr>
             <td>Watershed Code:</td>
-            <td>{watershedCode}</td>
+            <td className={watershedCode[1]? "" : styles.isRed} >{watershedCode}</td>
           </tr>
           <tr>
             <td>Gazetted Name:</td>
-            <td>{gazettedName}</td>
+            <td className={gazettedName[1]? "" : styles.isRed}>{gazettedName}</td>
           </tr>
           <tr>
             <td>First Local Name:</td>
-            <td>{firstLocalName}</td>
+            <td className={firstLocalName[1]? "" : styles.isRed}>{firstLocalName}</td>
           </tr>
           <tr>
             <td>Second Local Name:</td>
-            <td>{secondLocalName}</td>
+            <td className={secondLocalName[1]? "" : styles.isRed}>{secondLocalName}</td>
           </tr>
           <tr>
             <td>Flows Into:</td>
-            <td>{flowsInto}</td>
+            <td className={flowsInto[1]? "" : styles.isRed}>{flowsInto}</td>
           </tr>
-          {format7e && (
-            <>
-              <tr>
-                <td>Latitude:</td>
-                <td>{items["Latitude"]}</td>
-              </tr>
-              <tr>
-                <td>Longitude:</td>
-                <td>{items["Longitude"]}</td>
-              </tr>
-
-              <tr>
-                <td>Filed Crew:</td>
-                <td>{items["Field Crew"]}</td>
-              </tr>
-            </>
-          )}
         </tbody>
       </table>
     </div>

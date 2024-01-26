@@ -11,15 +11,20 @@ import Signature from "./SingleFormPart/Signature";
 import Note4h from "./SingleFormPart/Note4h";
 import { useState } from "react";
 import Link from "next/link";
-import Recomm  from "./SingleFormPart/7eFormPart/Recomm";
+import Recomm from "./SingleFormPart/7eFormPart/Recomm";
 import BioDetails from "./SingleFormPart/7eFormPart/BioDetails";
+import TeForm from "./SingleFormPart/teFormat/TeForm";
 
 const SingleForm = ({ items, folderName, fileName }) => {
   const format6e = folderName == "6eresultocr";
   const format4c = folderName == "4cresultocr";
   const format4h = folderName == "4hresultocr";
+
   const format5a = folderName == "5aresultocr";
   const format7e = folderName == "7eresultocr";
+
+  /* delete this once is Tan reviewed */
+  const formatTe = folderName == "teresultocr"; //TODO: delete this once is Tan reviewed
 
   return (
     <div className={styles.container}>
@@ -44,24 +49,30 @@ const SingleForm = ({ items, folderName, fileName }) => {
         </div>
       </div>
 
-      <div className={styles.headerBox}>
-        <div className={styles.streamID}>
-          <StreamID folderName={folderName} items={items} />
-        </div>
-        <div className={styles.areaDates}>
-          <Area items={items} folderName={folderName} />
-          <Dates items={items} folderName={folderName} />
-        </div>
-      </div>
-      <SpawningTable items={items} folderName={folderName} />
-      {(format4c || format6e || format7e) && (
-        <UnusualCon items={items} folderName={folderName} />
+      {formatTe && <TeForm items={items} folderName={folderName} />}
+      {/* //TODO: delete this once is Tan reviewed */}
+      {!formatTe && ( //TODO: delete this once is Tan reviewed
+        <>
+          <div className={styles.headerBox}>
+            <div className={styles.streamID}>
+              <StreamID folderName={folderName} items={items} />
+            </div>
+            <div className={styles.areaDates}>
+              <Area items={items} folderName={folderName} />
+              <Dates items={items} folderName={folderName} />
+            </div>
+          </div>
+          <SpawningTable items={items} folderName={folderName} />
+          {(format4c || format6e || format7e) && (
+            <UnusualCon items={items} folderName={folderName} />
+          )}
+          {format7e && <Recomm items={items} folderName={folderName} />}
+          {format7e && <BioDetails items={items} folderName={folderName} />}
+          {!format7e && <AdditionalCmt items={items} folderName={folderName} />}
+          <Signature items={items} folderName={folderName} />
+          {format4h && <Note4h />}
+        </>
       )}
-      {format7e && <Recomm items={items} folderName={folderName} />}
-      {format7e && <BioDetails items={items} folderName={folderName} />}
-      {!format7e && <AdditionalCmt items={items} folderName={folderName} />}
-      <Signature items={items} folderName={folderName} />
-      {format4h && <Note4h />}
     </div>
   );
 };
