@@ -7,11 +7,11 @@ import SpawningTable from "./SpawningTable";
 import UnusualCon from "./UnusualCon";
 import AdditionalCmt from "./AdditionalCmt";
 import Signature from "./Signature";
-import {ModifyContextProvider} from "../../../state/modify-context"
+
 
 const TeForm = ({ items, folderName }) => {
   return (
-    <ModifyContextProvider>
+    <>
       <div className={styles.headerBox}>
         <div className={styles.streamID}>
           <StreamID folderName={folderName} items={items} />
@@ -28,7 +28,7 @@ const TeForm = ({ items, folderName }) => {
 
       <AdditionalCmt items={items} folderName={folderName} />
       <Signature items={items} folderName={folderName} />
-    </ModifyContextProvider>
+    </>
   );
 };
 
