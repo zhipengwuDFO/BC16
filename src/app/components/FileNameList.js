@@ -24,7 +24,7 @@ const FileNameList = ({ filesByFolder }) => {
     year: "",
     format: "",
   });
-console.log(searchParams)
+
   // Extract unique folder names
   const uniqueFolderNames = [
     ...new Set(filesByFolder.map((item) => item.folderName)),
