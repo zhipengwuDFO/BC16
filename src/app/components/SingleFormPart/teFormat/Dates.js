@@ -1,10 +1,17 @@
 import React from "react";
 import styles from "./Dates.module.css";
+import { useContext, useEffect } from "react";
+import modifyContext from "../../../state/modify-context";
 const Dates = ({ items, folderName }) => {
   const format7e = folderName == "7eresultocr";
   const format4h = folderName == "4hresultocr";
   const format4c = folderName == "4cresultocr";
 
+  // const modifyCtx = useContext(modifyContext);
+  // const itemCtx = modifyCtx.item;
+  // const folderNameCtx = modifyCtx.folderName;
+  // console.log("itemCtx", itemCtx);
+  // console.log("folderNameCtx", folderNameCtx);
   const dates =
     // 5A, 6E: Dates of inspection
     //4C: Date of inspection   array
@@ -19,8 +26,7 @@ const Dates = ({ items, folderName }) => {
     //Dates of inspection (1)
     items["Dates of inspection (1)"];
 
-  console.log("dates", dates);
-
+  
   //Start date
 
   //End date
