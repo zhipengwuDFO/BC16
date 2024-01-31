@@ -1,23 +1,24 @@
 import React, { use } from "react";
 import styles from "./StreamID.module.css";
-// import { useContext, useEffect } from "react";
-// import modifyContext from "../../../state/modify-context";
+import { useContext, useEffect, useState } from "react";
+import modifyContext from "../../../state/modify-context";
+import EditableField from "./EditableField";
 function StreamID({ items, folderName }) {
-  const format7e = folderName == "7eresultocr";
-  const format4c = folderName == "4cresultocr";
-  const format4h = folderName == "4hresultocr";
-  const format6e = folderName == "6eresultocr";
-  const format5a = folderName == "5aresultocr";
-  const formatTe = folderName == "teresultocr";
 
-  // const modifyCtx = useContext(modifyContext);
-  // const updateItem = modifyCtx.updateItem;
-  // const updateFolderName = modifyCtx.updateFolderName;
+  const modifyCtx = useContext(modifyContext);
+  const updateItem = modifyCtx.updateItem;
+  const itemCtx = modifyCtx.item;
 
   // useEffect(() => {
   //   updateItem(items);
   //   updateFolderName(folderName);
-  // }, []);
+  // }, [items, folderName]);
+
+  // useEffect(() => {
+  //   if (itemCtx) {
+  //     setNewItem(itemCtx);
+  //   }
+  // }, [itemCtx]);
 
   const watershedCode =
     // 4C, 4H, 6E: Watershed code
@@ -46,6 +47,23 @@ function StreamID({ items, folderName }) {
     //4H, 6E, 5A, 7E: Flows into
     items["Flows Into"] || items["Flows into"];
 
+  // const startEditing = (fieldName, initialValue) => {
+  //   setEditableField(fieldName);
+  // };
+
+  // const stopEditing = () => {
+  //   setEditableField(null);
+  // };
+
+  const handleChange = (event) => {
+    updateItem(() => {
+      return {
+        ...itemCtx,
+        [event.target.name]: [event.target.value, 2],
+      };
+    });
+  };
+
   return (
     <div className={styles.StreamBox}>
       <div className={styles.title}>STREAM IDENTIFICATION</div>
@@ -53,31 +71,80 @@ function StreamID({ items, folderName }) {
         <tbody>
           <tr>
             <td>Watershed Code:</td>
-            <td className={watershedCode[1] ? "" : styles.isRed}>
-              {watershedCode}
-            </td>
+            <EditableField
+              fieldName="Watershed code"
+              fieldValue={watershedCode[0]}
+              isRed={watershedCode[1]}
+              handleChange={handleChange}
+            />
+
+            {/* <td
+              className={`${watershedCode[1] ? "" : styles.isRed}`}
+              onDoubleClick={() =>
+                startEditing("Watershed code", watershedCode[0])
+              }
+              onBlur={stopEditing}
+            >
+              {editableField === "Watershed code" ? (
+                <input
+                  type="text"
+                  name="Watershed code"
+                  defaultValue={watershedCode[0]}
+                  onBlur={stopEditing}
+                  onChange={handleChange}
+                  autoFocus
+                />
+              ) : (
+                <span>{watershedCode[0]}</span>
+              )}
+            </td> */}
           </tr>
           <tr>
             <td>Gazetted Name:</td>
-            <td className={gazettedName[1] ? "" : styles.isRed}>
+
+            <EditableField
+              fieldName="Gazetted name"
+              fieldValue={gazettedName[0]}
+              isRed={gazettedName[1]}
+              handleChange={handleChange}
+            />
+            {/* <td className={gazettedName[1] ? "" : styles.isRed}>
               {gazettedName}
-            </td>
+            </td> */}
           </tr>
           <tr>
             <td>First Local Name:</td>
-            <td className={firstLocalName[1] ? "" : styles.isRed}>
+            <EditableField
+              fieldName="First local name"
+              fieldValue={firstLocalName[0]}
+              isRed={firstLocalName[1]}
+              handleChange={handleChange}
+            />
+            {/* <td className={firstLocalName[1] ? "" : styles.isRed}>
               {firstLocalName}
-            </td>
+            </td> */}
           </tr>
           <tr>
             <td>Second Local Name:</td>
-            <td className={secondLocalName[1] ? "" : styles.isRed}>
+            <EditableField
+              fieldName="Second local name"
+              fieldValue={secondLocalName[0]}
+              isRed={secondLocalName[1]}
+              handleChange={handleChange}
+            />
+            {/* <td className={secondLocalName[1] ? "" : styles.isRed}>
               {secondLocalName}
-            </td>
+            </td> */}
           </tr>
           <tr>
             <td>Flows Into:</td>
-            <td className={flowsInto[1] ? "" : styles.isRed}>{flowsInto}</td>
+            <EditableField
+              fieldName="Flows Into"
+              fieldValue={flowsInto[0]}
+              isRed={flowsInto[1]}
+              handleChange={handleChange}
+            />
+            {/* <td className={flowsInto[1] ? "" : styles.isRed}>{flowsInto}</td> */}
           </tr>
         </tbody>
       </table>

@@ -46,7 +46,7 @@ const TableType4 = ({ items, folderName }) => {
               <div>DATES of SPAWNING</div>
               <div className={styles.columThree}>
                 <span>START</span>
-                <sparn>PEAK</sparn>
+                <span>PEAK</span>
                 <span>END</span>
               </div>
             </td>

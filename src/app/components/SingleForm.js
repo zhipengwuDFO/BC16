@@ -14,6 +14,7 @@ import Link from "next/link";
 import Recomm from "./SingleFormPart/7eFormPart/Recomm";
 import BioDetails from "./SingleFormPart/7eFormPart/BioDetails";
 import TeForm from "./SingleFormPart/teFormat/TeForm";
+import { ModifyContextProvider } from "../state/modify-context";
 
 const SingleForm = ({ items, folderName, fileName }) => {
   const format6e = folderName == "6eresultocr";
@@ -49,7 +50,11 @@ const SingleForm = ({ items, folderName, fileName }) => {
         </div>
       </div>
 
-      {formatTe && <TeForm items={items} folderName={folderName} />}
+      {formatTe && (
+        <ModifyContextProvider>
+          <TeForm items={items} folderName={folderName} fileName ={fileName}/>
+        </ModifyContextProvider>
+      )}
       {/* //TODO: delete this once is Tan reviewed */}
       {!formatTe && ( //TODO: delete this once is Tan reviewed
         <>

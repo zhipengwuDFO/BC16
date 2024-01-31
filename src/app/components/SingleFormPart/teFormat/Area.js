@@ -1,9 +1,15 @@
 import React from "react";
 import styles from "./Area.module.css";
+import { useContext } from "react";
+import modifyContext from "../../../state/modify-context";
+import EditableField from "./EditableField";
 const Area = ({ items, folderName }) => {
   const format7e = folderName == "7eresultocr";
-  const year = items["Year"] || items["year"];
 
+  const modifyCtx = useContext(modifyContext);
+  const updateItem = modifyCtx.updateItem;
+  const itemCtx = modifyCtx.item;
+  const year = items["Year"] || items["year"];
   const districtNo =
     //4C, 4H: District No.
     //5A, 7E: District
@@ -35,40 +41,73 @@ const Area = ({ items, folderName }) => {
     //7E: area
     items["Statistical Area"] || items["Subarea"] || items["Area"];
 
+  const handleChange = (event) => {
+    updateItem(() => {
+      return {
+        ...itemCtx,
+        [event.target.name]: [event.target.value, 2],
+      };
+    });
+  };
   return (
     <div>
       <table className={styles.myTable}>
         <tbody>
           <tr>
             <td>Year:</td>
-            <td>{year}</td>
+            <EditableField
+              fieldName="Year"
+              fieldValue={year[0]}
+              isRed={year[1]}
+              handleChange={handleChange}
+            />
+
+            {/* <td>{year}</td> */}
           </tr>
           <tr>
             <td>District Number:</td>
-            <td>{districtNo}</td>
+            <EditableField
+              fieldName="District No."
+              fieldValue={districtNo[0]}
+              isRed={districtNo[1]}
+              handleChange={handleChange}
+            />
+            {/* <td>{districtNo}</td> */}
           </tr>
 
           <tr>
             <td>Statistical Area:</td>
-            <td>{StatisticalArea}</td>
+            <EditableField
+              fieldName="Statistical Area"
+              fieldValue={StatisticalArea[0]}
+              isRed={StatisticalArea[1]}
+              handleChange={handleChange}
+            />
+            {/* <td>{StatisticalArea}</td> */}
           </tr>
-          {format7e ? (
+
+          <>
             <tr>
-              <td> Sub:</td>
-              <td>{subdistrictName}</td>
+              <td>Subdistrict Number:</td>
+              <EditableField
+              fieldName="Subdistrict No."
+              fieldValue={subdistrictNo[0]}
+              isRed={subdistrictNo[1]}
+              handleChange={handleChange}
+            />
+              {/* <td>{subdistrictNo}</td> */}
             </tr>
-          ) : (
-            <>
-              <tr>
-                <td>Subdistrict Number:</td>
-                <td>{subdistrictNo}</td>
-              </tr>
-              <tr>
-                <td>Subdistrict Name:</td>
-                <td>{subdistrictName}</td>
-              </tr>
-            </>
-          )}
+            <tr>
+              <td>Subdistrict Name:</td>
+              <EditableField
+              fieldName="Subdistrict Name"
+              fieldValue={subdistrictName[0]}
+              isRed={subdistrictName[1]}
+              handleChange={handleChange}
+            />
+              {/* <td>{subdistrictName}</td> */}
+            </tr>
+          </>
         </tbody>
       </table>
     </div>
