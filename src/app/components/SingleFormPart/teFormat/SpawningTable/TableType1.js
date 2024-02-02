@@ -1,9 +1,28 @@
 import React from "react";
 import styles from "./TableType1.module.css";
+import EditableField from "../EditableField/EditableField";
+import { useContext } from "react";
+import modifyContext from "../../../../state/modify-context";
 //for 6E and 4C
 const TableType1 = ({ items, folderName }) => {
   const format6e = folderName == "6eresultocr";
   const format4c = folderName == "4cresultocr";
+
+  const modifyCtx = useContext(modifyContext);
+  const updateItem = modifyCtx.updateItem;
+  const itemCtx = modifyCtx.item;
+
+  const newItemCtx = { ...itemCtx };
+
+  const handleChange = (event) => {
+    const speciesName = event.target.getAttribute("speciesname");
+    const fieldName = event.target.name;
+    const fieldValue = event.target.value;
+    console.log("speciesName", speciesName);
+    console.log("fieldName", fieldName);
+    console.log("fieldValue", fieldValue);
+
+  };
   const renderTable = (item) => {
     const species = items["Spawning run timing and estimated number"]?.[item];
     if (species) {
@@ -18,6 +37,14 @@ const TableType1 = ({ items, folderName }) => {
               }`}
             >
               {species["Arrival month"]}
+
+              <EditableField
+                speciesName={item}
+                fieldName="Arrival month"
+                fieldValue={species["Arrival month"][0]}
+                isRed={species["Arrival month"] && species["Arrival month"][1]}
+                handleChange={handleChange}
+              />
             </td>
             <td
               className={`${
@@ -131,7 +158,15 @@ const TableType1 = ({ items, folderName }) => {
     } else {
       return (
         <>
-          <td></td>
+          <td>
+            <EditableField
+              speciesName={item}
+              fieldName="Arrival month"
+              fieldValue={""}
+              isRed={2}
+              handleChange={handleChange}
+            />
+          </td>
           <td></td>
           <td></td>
           <td></td>

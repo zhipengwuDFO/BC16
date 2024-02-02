@@ -6,7 +6,9 @@
   color: green !important;
 }
 
-.content{
-  min-width: 100px;
+.content {
   background-color: aqua;
+}
+.input {
+  width: 100px;
 }
