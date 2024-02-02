@@ -20,8 +20,8 @@ const EditableField = ({ fieldName, fieldValue, isRed, handleChange }) => {
       break;
   }
   return (
-    <span
-      className={stylingClass}
+    <div
+   
       onDoubleClick={() => setIsEditing(true)}
       onBlur={() => {
         setIsEditing(false);
@@ -37,9 +37,9 @@ const EditableField = ({ fieldName, fieldValue, isRed, handleChange }) => {
           autoFocus
         />
       ) : (
-        <span className={stylingClass}>{fieldValue}</span>
+        <span className={stylingClass}> {fieldValue || '\u200B'} </span>
       )}
-    </span>
+    </div>
   );
 };
 

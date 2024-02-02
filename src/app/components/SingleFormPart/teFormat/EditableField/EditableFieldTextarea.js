@@ -41,7 +41,7 @@ const EditableFieldTextarea = ({
           autoFocus
         />
       ) : (
-        <span className={stylingClass}>{fieldValue}</span>
+        <span className={stylingClass}>{fieldValue|| '\u200B'}</span>
       )}
     </div>
   );
