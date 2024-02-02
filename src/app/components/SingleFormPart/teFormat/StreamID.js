@@ -2,9 +2,8 @@ import React, { use } from "react";
 import styles from "./StreamID.module.css";
 import { useContext, useEffect, useState } from "react";
 import modifyContext from "../../../state/modify-context";
-import EditableField from "./EditableField";
+import EditableField from "./EditableField/EditableField";
 function StreamID({ items, folderName }) {
-
   const modifyCtx = useContext(modifyContext);
   const updateItem = modifyCtx.updateItem;
   const itemCtx = modifyCtx.item;
@@ -71,79 +70,68 @@ function StreamID({ items, folderName }) {
         <tbody>
           <tr>
             <td>Watershed Code:</td>
-            <EditableField
-              fieldName="Watershed code"
-              fieldValue={watershedCode[0]}
-              isRed={watershedCode[1]}
-              handleChange={handleChange}
-            />
-
-            {/* <td
-              className={`${watershedCode[1] ? "" : styles.isRed}`}
-              onDoubleClick={() =>
-                startEditing("Watershed code", watershedCode[0])
-              }
-              onBlur={stopEditing}
-            >
-              {editableField === "Watershed code" ? (
-                <input
-                  type="text"
-                  name="Watershed code"
-                  defaultValue={watershedCode[0]}
-                  onBlur={stopEditing}
-                  onChange={handleChange}
-                  autoFocus
-                />
-              ) : (
-                <span>{watershedCode[0]}</span>
-              )}
-            </td> */}
+            <td>
+              <EditableField
+                fieldName="Watershed code"
+                fieldValue={watershedCode[0]}
+                isRed={watershedCode[1]}
+                handleChange={handleChange}
+              />
+            </td>
           </tr>
           <tr>
             <td>Gazetted Name:</td>
-
-            <EditableField
-              fieldName="Gazetted name"
-              fieldValue={gazettedName[0]}
-              isRed={gazettedName[1]}
-              handleChange={handleChange}
-            />
+            <td>
+              <EditableField
+                fieldName="Gazetted name"
+                fieldValue={gazettedName[0]}
+                isRed={gazettedName[1]}
+                handleChange={handleChange}
+              />
+            </td>
             {/* <td className={gazettedName[1] ? "" : styles.isRed}>
               {gazettedName}
             </td> */}
           </tr>
           <tr>
             <td>First Local Name:</td>
-            <EditableField
-              fieldName="First local name"
-              fieldValue={firstLocalName[0]}
-              isRed={firstLocalName[1]}
-              handleChange={handleChange}
-            />
+            <td>
+              <EditableField
+                fieldName="First local name"
+                fieldValue={firstLocalName[0]}
+                isRed={firstLocalName[1]}
+                handleChange={handleChange}
+              />
+            </td>
             {/* <td className={firstLocalName[1] ? "" : styles.isRed}>
               {firstLocalName}
             </td> */}
           </tr>
           <tr>
             <td>Second Local Name:</td>
-            <EditableField
-              fieldName="Second local name"
-              fieldValue={secondLocalName[0]}
-              isRed={secondLocalName[1]}
-              handleChange={handleChange}
-            />
+            <td>
+              <EditableField
+                fieldName="Second local name"
+                fieldValue={secondLocalName[0]}
+                isRed={secondLocalName[1]}
+                handle
+                Change={handleChange}
+              />
+            </td>
             {/* <td className={secondLocalName[1] ? "" : styles.isRed}>
               {secondLocalName}
             </td> */}
           </tr>
           <tr>
             <td>Flows Into:</td>
-            <EditableField
-              fieldName="Flows Into"
-              fieldValue={flowsInto[0]}
-              isRed={flowsInto[1]}
-              handleChange={handleChange}
-            />
+            <td>
+              <EditableField
+                fieldName="Flows Into"
+                fieldValue={flowsInto[0]}
+                isRed={flowsInto[1]}
+                handleChange={handleChange}
+              />
+            </td>
             {/* <td className={flowsInto[1] ? "" : styles.isRed}>{flowsInto}</td> */}
           </tr>
         </tbody>

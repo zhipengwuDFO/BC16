@@ -7,10 +7,10 @@ const EditableField = ({ fieldName, fieldValue, isRed, handleChange }) => {
   let stylingClass = "";
   switch (isRed) {
     case true:
-      stylingClass = styles.isRed;
+
       break;
     case false:
-      // No additional styling for false
+        stylingClass = styles.isRed;
       break;
     case 2:
       stylingClass = styles.isGreen;
@@ -20,7 +20,7 @@ const EditableField = ({ fieldName, fieldValue, isRed, handleChange }) => {
       break;
   }
   return (
-    <td
+    <span
       className={stylingClass}
       onDoubleClick={() => setIsEditing(true)}
       onBlur={() => {
@@ -39,7 +39,7 @@ const EditableField = ({ fieldName, fieldValue, isRed, handleChange }) => {
       ) : (
         <span className={stylingClass}>{fieldValue}</span>
       )}
-    </td>
+    </span>
   );
 };
 

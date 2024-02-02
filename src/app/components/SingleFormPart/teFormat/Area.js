@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./Area.module.css";
 import { useContext } from "react";
 import modifyContext from "../../../state/modify-context";
-import EditableField from "./EditableField";
+import EditableField from "./EditableField/EditableField";
 const Area = ({ items, folderName }) => {
   const format7e = folderName == "7eresultocr";
 
@@ -55,56 +55,66 @@ const Area = ({ items, folderName }) => {
         <tbody>
           <tr>
             <td>Year:</td>
-            <EditableField
-              fieldName="Year"
-              fieldValue={year[0]}
-              isRed={year[1]}
-              handleChange={handleChange}
-            />
+            <td>
+              <EditableField
+                fieldName="Year"
+                fieldValue={year[0]}
+                isRed={year[1]}
+                handleChange={handleChange}
+              />
+            </td>
 
             {/* <td>{year}</td> */}
           </tr>
           <tr>
             <td>District Number:</td>
-            <EditableField
-              fieldName="District No."
-              fieldValue={districtNo[0]}
-              isRed={districtNo[1]}
-              handleChange={handleChange}
-            />
+            <td>
+              <EditableField
+                fieldName="District No."
+                fieldValue={districtNo[0]}
+                isRed={districtNo[1]}
+                handleChange={handleChange}
+              />
+            </td>
             {/* <td>{districtNo}</td> */}
           </tr>
 
           <tr>
             <td>Statistical Area:</td>
+            <td>
             <EditableField
               fieldName="Statistical Area"
               fieldValue={StatisticalArea[0]}
               isRed={StatisticalArea[1]}
               handleChange={handleChange}
             />
+            </td>
             {/* <td>{StatisticalArea}</td> */}
           </tr>
 
           <>
             <tr>
               <td>Subdistrict Number:</td>
+              <td>
               <EditableField
-              fieldName="Subdistrict No."
-              fieldValue={subdistrictNo[0]}
-              isRed={subdistrictNo[1]}
-              handleChange={handleChange}
-            />
+                fieldName="Subdistrict No."
+                fieldValue={subdistrictNo[0]}
+                isRed={subdistrictNo[1]}
+                handleChange={handleChange}
+              />
+              </td>
               {/* <td>{subdistrictNo}</td> */}
             </tr>
             <tr>
               <td>Subdistrict Name:</td>
-              <EditableField
-              fieldName="Subdistrict Name"
-              fieldValue={subdistrictName[0]}
-              isRed={subdistrictName[1]}
-              handleChange={handleChange}
-            />
+              <td>
+                <EditableField
+                  fieldName="Subdistrict Name"
+                  fieldValue={subdistrictName[0]}
+                  isRed={subdistrictName[1]}
+                  handleChange={handleChange}
+                />
+              </td>
               {/* <td>{subdistrictName}</td> */}
             </tr>
           </>
