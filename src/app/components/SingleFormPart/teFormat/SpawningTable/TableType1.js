@@ -13,7 +13,6 @@ const TableType1 = ({ items, folderName }) => {
   const itemCtx = modifyCtx.item; 
 
   const newItemCtx = { ...itemCtx };
- //test
   const handleChange = (event) => {
     const speciesName = event.target.getAttribute("speciesname");
     const fieldName = event.target.name;
