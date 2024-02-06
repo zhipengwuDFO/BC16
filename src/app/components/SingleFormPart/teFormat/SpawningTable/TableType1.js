@@ -10,10 +10,10 @@ const TableType1 = ({ items, folderName }) => {
 
   const modifyCtx = useContext(modifyContext);
   const updateItem = modifyCtx.updateItem;
-  const itemCtx = modifyCtx.item;
+  const itemCtx = modifyCtx.item; 
 
   const newItemCtx = { ...itemCtx };
-
+ //test
   const handleChange = (event) => {
     const speciesName = event.target.getAttribute("speciesname");
     const fieldName = event.target.name;
